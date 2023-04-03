@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - youtube.com/codingnepal -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>To Do List</title>
+    <link rel="stylesheet" href="css/home.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+  </head>
+  <body>
+    <div class="box" id="heading">
+      <h1>Todo List</h1>
+    </div>
+    <form action="/delete" method="POST">
+    <div class="box">
+      <% for (let i of task_list) { %>
+      <div class="item">
+        <input type="checkbox" name="checkbox" value="<%= i._id %>" />
+        <div class="outer">
+        <div class="detail">
+        <p><%= i.desc %></p>
+        <label style="margin-left: 20px; margin-bottom: 10px;"><%= i.dueDate.toDateString() %></label>
+    </div>
+    <div class="label">
+        <span style=" margin:auto;"><%= i.label %></span>
+    </div>
+</div>
+      </div>
+    
+      <% } %>
+      <button type="submit" style="position: absolute; margin-left: 24%; margin-top: 0.5%;"><i class="fas fa-trash-alt" ></i></button>
+    </form>
+    
+
+      <form class="item" action="/create" method="POST">
+        <input
+          type="text"
+          name="taskDesc"
+          placeholder="Create Task"
+          autocomplete="off"
+        />
+        <label for="category" style="margin-right: 10px;">Category</label>
+        <select name="category" id="category">
+            <option value="default" selected>Select</option>
+          <option value="personal">Personal</option>
+          <option value="shopping">Shopping</option>
+          <option value="work" >Work</option>
+          <option value="other">Other</option>
+        </select>
+        <label for="due-date" style="margin-left: 20px; margin-right: 10px;">Due Date:</label>
+<input type="date" id="due-date" name="date">
+        <button type="submit" >+</button>
+        <!-- <button type="submit" name="list">-</button> -->
+      </form>
+    </div>
+  </body>
+</html>
